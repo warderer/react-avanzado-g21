@@ -54,10 +54,10 @@ const FormHook = () => {
           </select>
 
           <label htmlFor='email'>Email</label>
-          <input type='text' name='email' placeholder='correo@mail.com' id='email' value={input.email} onChange={handleInputChange} />
+          <input type='text' name='email' placeholder='correo@mail.com' id='email' value={input.email} onChange={handleInputChange} autoComplete='username' />
 
           <label htmlFor='password'>Password</label>
-          <input type='password' name='password' id='password' value={input.password} onChange={handleInputChange} />
+          <input type='password' name='password' id='password' value={input.password} onChange={handleInputChange} autoComplete='new-password' />
           <button type='submit'>
             Iniciar Sesion
           </button>

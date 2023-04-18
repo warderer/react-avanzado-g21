@@ -31,6 +31,8 @@ const SimpleForm = () => {
             placeholder='correo@mail.com'
             id='simple-email'
             onChange={(event) => setEmail(event.target.value)}
+            value={email}
+            autoComplete='username'
           />
 
           <label htmlFor='password'>Password</label>
@@ -39,6 +41,8 @@ const SimpleForm = () => {
             name='password'
             id='simple-password'
             onChange={(event) => setPassword(event.target.value)}
+            value={password}
+            autoComplete='new-password'
           />
 
           <button type='submit'>
