@@ -1,26 +1,19 @@
-import { useState, useEffect } from 'react'
 import './songlist.css'
-// import canciones from '../../assets/listaCanciones.json'
-import canciones from '@/assets/listaCanciones.json'
+import { useSongContext } from '@/context/SongContext'
 
 const SongList = () => {
-  const [list, setList] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  // Simular una llamada a la API
-  useEffect(() => {
-    setTimeout(() => {
-      setList(canciones)
-      setLoading(false)
-    }, 2000)
-  }, [])
+  const context = useSongContext()
 
   return (
     <section>
-      {loading
+      {context.loading
         ? <h2>Cargando...</h2>
-        : list.map((song) => (
-          <div className='row-song' key={song.id}>
+        : context.list?.map((song) => (
+          <div
+            className='row-song' key={song.id} onClick={() => {
+              context.setSelectedSong(song)
+            }}
+          >
             <h4>{song.title}</h4>
             <p>{song.artist}</p>
           </div>
