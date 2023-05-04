@@ -1,20 +1,23 @@
 import { useNavigate } from 'react-router-dom'
 import useForm from '@/hooks/useForm'
 import { loginUserService } from '@/services/userServices'
+import { useAuthContext } from '@/context/AuthContext'
 import logo from '@/assets/react.svg'
 import '@/styles/form.css'
 
 const Login = () => {
   const navigate = useNavigate()
+  const { login } = useAuthContext()
 
   const sendData = async (data) => {
     try {
       const response = await loginUserService(data)
       if (response.status === 200) {
+        login(response.data.token)
         navigate('/dashboard')
         // Guardamos el token en el localStorage
         // Este dato permanece aún si el navegador se cierra y vuelve a abrir
-        window.localStorage.setItem('token', response.data.token)
+        // window.localStorage.setItem('token', response.data.token)
         // console.log(response.data.token)
       }
     } catch (error) {
