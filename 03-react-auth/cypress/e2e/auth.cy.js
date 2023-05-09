@@ -14,11 +14,11 @@ describe('Funcionalidad de Login', () => {
     cy.intercept('POST', 'http://localhost:3000/login').as('login')
     // Arrange
     cy.visit('/login')
+    const email = 'drstrange@marvel.com'
+    const password = 'multiverso'
 
     // Act
-    cy.get('input[name="email"]').type('drstrange@marvel.com')
-    cy.get('input[name="password"]').type('multiverso')
-    cy.get('button[type="submit"]').click()
+    cy.doLogin(email, password)
 
     cy.wait('@login')
     // Assert
@@ -32,9 +32,7 @@ describe('Funcionalidad de Login', () => {
     cy.visit('/login')
 
     // Act
-    cy.get('input[name="email"]').type('superman@dc.com')
-    cy.get('input[name="password"]').type('superman')
-    cy.get('button[type="submit"]').click()
+    cy.doLogin('superman@dc.com', 'superman')
     cy.wait('@login')
 
     cy.get('nav > ul li:last').click()
