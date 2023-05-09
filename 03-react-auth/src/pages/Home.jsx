@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <>
       <h1>Home</h1>
-      <div className='d-flex flex-row flex-wrap'>
+      <div className='d-flex flex-row flex-wrap justify-content-center'>
         {
           itemsData?.map(product => (
             <div className='card' style={{ width: '18rem' }} key={product.id}>
