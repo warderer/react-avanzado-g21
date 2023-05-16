@@ -1,7 +1,7 @@
-import { useAuthContext } from '@/context/AuthContext'
+import { useAuth } from '@/hooks/useAuth'
 
 const Secret = () => {
-  const { userPayload } = useAuthContext()
+  const { userPayload } = useAuth()
   return (
     <>
       <h1>Secret</h1>

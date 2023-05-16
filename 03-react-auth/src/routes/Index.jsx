@@ -1,9 +1,9 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { useAuthContext } from '@/context/AuthContext'
+import { useAuth } from '@/hooks/useAuth'
 import { Home, Dashboard, Login, Signup, Secret } from '@/pages'
 
 const RoutesIndex = () => {
-  const { isAuth } = useAuthContext()
+  const { isAuth } = useAuth()
   return (
     <Routes>
       <Route path='/' element={<Home />} />

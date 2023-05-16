@@ -1,4 +1,4 @@
-import { useAuthContext } from '@/context/AuthContext'
+import { useAuth } from '@/hooks/useAuth'
 import { NavLink } from 'react-router-dom'
 import './Header.scss'
 
@@ -6,14 +6,13 @@ import './Header.scss'
 
 // NavLink es un tipo especial de Link, que me permite gestionar estilos en función de si la ruta está activa o no (isActive) o si esta cargando (isPending)
 
-const linkIsActive = (isActive, isPending) => {
-  if (isPending) return 'header__item-link'
+const linkIsActive = (isActive) => {
   if (isActive) return 'header__item-link header__item-link--is-active'
   else return 'header__item-link'
 }
 
 const Header = () => {
-  const { isAuth, logout } = useAuthContext()
+  const { isAuth, logout } = useAuth()
 
   return (
     <nav className='header'>
@@ -23,7 +22,7 @@ const Header = () => {
         <li className='header__list-item'>
           <NavLink
             to='/'
-            className={({ isActive, isPending }) => linkIsActive(isActive, isPending)}
+            className={({ isActive }) => linkIsActive(isActive)}
           >Home
           </NavLink>
         </li>
@@ -31,7 +30,7 @@ const Header = () => {
         <li className='header__list-item'>
           <NavLink
             to='/dashboard'
-            className={({ isActive, isPending }) => linkIsActive(isActive, isPending)}
+            className={({ isActive }) => linkIsActive(isActive)}
           >Dashboard
           </NavLink>
         </li>
@@ -42,7 +41,7 @@ const Header = () => {
               <li className='header__list-item'>
                 <NavLink
                   to='/secret'
-                  className={({ isActive, isPending }) => linkIsActive(isActive, isPending)}
+                  className={({ isActive }) => linkIsActive(isActive)}
                 >Secret
                 </NavLink>
               </li>
@@ -50,7 +49,7 @@ const Header = () => {
               <li className='header__list-item'>
                 <NavLink
                   to='/'
-                  className={({ isActive, isPending }) => linkIsActive(isActive, isPending)}
+                  className='header__item-link'
                   onClick={logout}
                 >Logout
                 </NavLink>
@@ -62,7 +61,7 @@ const Header = () => {
               <li className='header__list-item'>
                 <NavLink
                   to='/login'
-                  className={({ isActive, isPending }) => linkIsActive(isActive, isPending)}
+                  className={({ isActive }) => linkIsActive(isActive)}
                 >Login
                 </NavLink>
               </li>
@@ -70,7 +69,7 @@ const Header = () => {
               <li className='header__list-item'>
                 <NavLink
                   to='/signup'
-                  className={({ isActive, isPending }) => linkIsActive(isActive, isPending)}
+                  className={({ isActive }) => linkIsActive(isActive)}
                 >Signup
                 </NavLink>
               </li>

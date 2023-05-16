@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import useForm from '@/hooks/useForm'
 import { loginUserService } from '@/services/userServices'
-import { useAuthContext } from '@/context/AuthContext'
+import { useAuth } from '@/hooks/useAuth'
 import logo from '@/assets/react.svg'
 import '@/styles/form.css'
 
 const Login = () => {
   const navigate = useNavigate()
-  const { login } = useAuthContext()
+  const { login } = useAuth()
 
   const sendData = async (data) => {
     try {

@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect } from 'react'
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode'
 
@@ -7,7 +6,7 @@ import jwt_decode from 'jwt-decode'
 const AuthContext = createContext()
 
 // #2 Crear el proveedor
-const AuthProvider = (props) => {
+const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false) // ¿Estoy autenticado?
   const [userPayload, setUserPayload] = useState(null) // JWT Payload decodificado
 
@@ -46,19 +45,12 @@ const AuthProvider = (props) => {
 
   return (
     <AuthContext.Provider value={values}>
-      {props.children}
+      {children}
     </AuthContext.Provider>
   )
 }
 
-// #3 Consumidor del contexto
-const useAuthContext = () => {
-  const context = useContext(AuthContext)
-  return context
-}
-
 export {
   AuthContext,
-  AuthProvider,
-  useAuthContext
+  AuthProvider
 }

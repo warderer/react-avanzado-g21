@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useAuthContext } from '@/context/AuthContext'
+import { useAuth } from '@/hooks/useAuth'
 import { getSingleUser } from '@/services/userServices'
 
 const Dashboard = () => {
-  const { userPayload } = useAuthContext()
+  const { userPayload } = useAuth()
   const [userData, setUserData] = useState({})
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Dashboard = () => {
       }
     }
     fetchUserData()
-  }, [])
+  }, [userPayload.id])
 
   return (
     <>
